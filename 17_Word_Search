@@ -1,0 +1,28 @@
+def find(grid,i,j,word,k,v):
+    a=b=c=d=False
+    if (i,j) in v:
+        return False
+    if k==len(word):
+        return True
+    
+    if j-1>=0 and grid[i][j-1]==word[k]:
+        a=find(grid,i,j-1,word,k+1,v+[(i,j)])
+    if i-1>=0 and grid[i-1][j]==word[k]:
+        b=find(grid,i-1,j,word,k+1,v+[(i,j)])
+    if j+1<len(grid[0]) and grid[i][j+1]==word[k]:
+        c=find(grid,i,j+1,word,k+1,v+[(i,j)])
+    if i+1<len(grid) and grid[i+1][j]==word[k]:
+        d=find(grid,i+1,j,word,k+1,v+[(i,j)])
+    return a or b or c or d
+
+class Solution:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        for i in range(len(board)):
+            for j in range(len(board[0])):
+                visited=[]
+                if board[i][j]==word[0]:
+                    x=find(board,i,j,word,1,visited)
+                    
+                    if x==True:
+                        return True
+        return False
