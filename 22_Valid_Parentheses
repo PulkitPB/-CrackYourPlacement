@@ -1,0 +1,19 @@
+class Solution:
+    def isValid(self, s: str) -> bool:
+        a=[]
+        dict1={')':'(','}':'{',']':'['}
+        x=True
+        for i in range(len(s)):
+            if s[i] in ['(','{',"["]:
+                a.append(s[i])
+            elif s[i] in [')','}',']']:
+                if len(a)==0:
+                    x=False
+                    break
+                st=a.pop()
+                if st!=dict1[s[i]]:
+                    x=False
+                    break
+        if len(a)!=0:
+            x=False
+        return x
