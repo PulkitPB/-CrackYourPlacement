@@ -1,0 +1,27 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        s=s[::-1]
+        # print(s)
+        i=0
+        n=len(s)
+        while i<n:
+            n=len(s)
+            p=i
+            while i<len(s) and s[i]==' ':
+                i+=1
+            left=i
+            right=i
+            while right<len(s) and s[right]!=' ':
+                right+=1
+            # print(left,right)
+            s=s[:p]+s[left:right][::-1]+' '+s[right+1:]
+            # print(s)
+            i=right+1-left+p
+        i=0
+        j=n-1
+        while i<n and s[i]==" ":
+            i+=1
+        while j>=0 and s[j]==" ":
+            j-=1
+        s=s[i:j+1]
+        return s

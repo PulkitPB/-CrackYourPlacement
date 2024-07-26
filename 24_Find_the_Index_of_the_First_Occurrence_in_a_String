@@ -1,0 +1,25 @@
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if len(needle)>len(haystack):
+            return -1
+        t=0
+        count=0
+        for s in needle:
+            t+=(10**count)*(ord(s)-ord('a'))
+            count+=1
+        num=0
+        count=0
+        for s in haystack[:len(needle)]:
+            num+=(10**count)*(ord(s)-ord('a'))
+            count+=1
+        if num==t:
+            return 0
+        x=len(needle)
+        count-=1
+        for i in range(x,len(haystack)):
+            num-=ord(haystack[i-x])-ord('a')
+            num//=10
+            num+=(ord(haystack[i])-ord('a'))*(10**(x-1))
+            if num==t:
+                return i-x+1
+        return -1

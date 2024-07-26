@@ -1,0 +1,23 @@
+def solve(n,left,ans,s,input):
+    if left>n:
+        return
+    if n==0 and s not in ans:
+        ans.append(s)
+        return
+    if input=='(':
+        solve(n,left+1,ans,s+input,'(')
+        solve(n,left+1,ans,s+input,')')
+    elif input==')':
+        if left==0:
+            return
+        solve(n-1,left-1,ans,s+input,'(')
+        solve(n-1,left-1,ans,s+input,')')
+class Solution:
+    def generateParenthesis(self, n: int) -> List[str]:
+        ans=[]
+        s=''
+        left=0
+        
+        solve(n,left,ans,s,'(')
+        solve(n,left,ans,s,')')
+        return ans
