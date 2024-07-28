@@ -1,0 +1,13 @@
+class Solution:
+    def minMoves2(self, nums: List[int]) -> int:
+        nums.sort()
+        ans=2**32-1
+        total=sum(nums)
+        left=0
+        for i in range(len(nums)):
+            total-=nums[i]
+            x=(i*nums[i]-left)+(total-(len(nums)-1-i)*nums[i])
+            ans=min(ans,x)
+            left+=nums[i]
+        return ans
+        
