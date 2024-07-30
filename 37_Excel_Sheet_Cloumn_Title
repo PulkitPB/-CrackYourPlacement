@@ -1,0 +1,11 @@
+class Solution:
+    def convertToTitle(self, n: int) -> str:
+        x=ord('A')-1
+        ans=''
+        while n>0:
+            if n<26:
+                ans+=chr(x+n)
+                return ans
+            ans+=chr(x+n//26)
+            n=n%26
+        return ans

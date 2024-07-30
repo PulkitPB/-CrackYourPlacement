@@ -1,0 +1,29 @@
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        if len(a)>len(b):
+            b='0'*(len(a)-len(b))+b
+        else:
+            a='0'*(len(b)-len(a))+a
+        carry=0
+        ans=''
+        a=a[::-1]
+        b=b[::-1]
+        for i in range(len(a)):
+            count1=int(a[i])+carry+int(b[i])
+            
+            if count1==1:
+                carry=0
+                ans+='1'
+            elif count1==2:
+                carry=1
+                ans+='0'
+            elif count1==3:
+                carry=1
+                ans+='1'
+            else:
+                carry=0
+                ans+='0'
+            
+        if carry:
+            ans+='1'
+        return ans[::-1]
