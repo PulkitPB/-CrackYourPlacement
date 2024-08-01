@@ -1,0 +1,19 @@
+class Solution:
+    def Anagrams(self, strs, n):
+        '''
+        words: list of word
+        n:      no of words
+        return : list of group of anagram {list will be sorted in driver code (not word in grp)}
+        '''
+        
+        #code here
+        x={}
+     #   print(a,''.join(sorted(a)))
+        for i in range(len(strs)):
+            t=''.join(sorted(strs[i]))
+            if t in x.keys():
+                x[t].append(strs[i])
+            else:
+                x[t]=[strs[i]]
+
+        return list(x.values())

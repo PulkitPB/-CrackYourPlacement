@@ -1,0 +1,31 @@
+def solve(arr,n,m,currmin):
+    currsum=0
+    count=1
+    for i in range(n):
+        if arr[i]>currmin:
+            return False
+        if (currsum+arr[i])>currmin:
+            count+=1
+            currsum=arr[i]
+            if count>m:
+                return False
+        else:
+            currsum+=arr[i]
+    return True
+class Solution:
+    #Function to find minimum number of pages.
+    def findPages(self,n ,arr ,m):
+        if n<m:
+            return -1
+        #code here
+        start=0
+        end=sum(arr)
+        ans=2**32-1
+        while(start<=end):
+            mid=(start+end)//2
+            if solve(arr,n,m,mid):
+                ans=min(ans,mid)
+                end=mid-1
+            else:
+                start=mid+1
+        return ans

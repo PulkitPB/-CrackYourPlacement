@@ -1,0 +1,16 @@
+class Solution:
+    def multiply_two_lists(self, first, second):
+        M=10**9+7
+        # Code here
+        s1=0
+        s2=0
+        ptr1=first
+        ptr2=second
+        while ptr1 or ptr2:
+            if ptr1:
+                s1=s1*10+ptr1.data
+                ptr1=ptr1.next
+            if ptr2:
+                s2=s2*10+ptr2.data
+                ptr2=ptr2.next
+        return ((s1%M)*(s2%M))%M
