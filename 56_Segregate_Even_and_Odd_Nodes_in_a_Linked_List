@@ -1,0 +1,21 @@
+class Solution:
+    def divide(self, head):
+        # code here
+        new=node()
+        new.data=0
+        new.next=head
+        slow=new
+        fast=head
+        while slow and slow.next and slow.next.data%2==0:
+            slow=slow.next
+        fast=slow.next
+        while fast and fast.next:
+            if fast.next.data%2==0:
+                temp=fast.next
+                fast.next=fast.next.next
+                temp.next=slow.next
+                slow.next=temp
+                slow=slow.next
+            else:
+                fast=fast.next
+        return new.next

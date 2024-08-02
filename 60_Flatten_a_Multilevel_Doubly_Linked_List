@@ -1,0 +1,32 @@
+"""
+# Definition for a Node.
+class Node:
+    def __init__(self, val, prev, next, child):
+        self.val = val
+        self.prev = prev
+        self.next = next
+        self.child = child
+"""
+def solve(head):
+    ptr=head
+    temp=None
+    prev=None
+    while ptr:
+        if ptr.child:
+            temp=ptr.next
+            ptr.next=ptr.child
+            ptr.next.prev=ptr
+            ptr.child=None
+            temp1=solve(ptr.next)
+            if temp1:
+                temp1.next=temp
+            if temp:
+                temp.prev=temp1
+        prev=ptr
+        ptr=ptr.next
+        
+    return prev
+class Solution:
+    def flatten(self, head: 'Optional[Node]') -> 'Optional[Node]':
+        temp=solve(head)
+        return head
