@@ -1,0 +1,20 @@
+from collections import defaultdict
+class Solution:
+    def celebrity(self, mat):
+        if len(mat)==1:
+            if mat[0][0]==0:
+                return 0
+            return -1
+        # code here
+        d=defaultdict(int)
+        total=0
+        # print(mat[0])
+        for i in range(len(mat)):
+            for j in range(len(mat[0])):
+                if mat[i][j]==1:
+                    total+=1
+                    d[j]+=1
+        for t in d:
+            if d[t]==len(mat)-1 and sum(mat[t])==0:
+                return t
+        return -1

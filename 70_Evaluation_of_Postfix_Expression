@@ -1,0 +1,22 @@
+class Solution:
+    
+    #Function to evaluate a postfix expression.
+    def evaluatePostfix(self, S):
+        #code here
+        stack=[]
+        ans=0
+        for t in S:
+            if t=="+":
+                stack=stack[:-2]+[stack[-1]+stack[-2]]
+            elif t=="-":
+                stack=stack[:-2]+[stack[-2]-stack[-1]]
+            elif t=="*":
+                stack=stack[:-2]+[stack[-2]*stack[-1]]
+            elif t=="/":
+                if stack[-1]!=0:
+                    stack=stack[:-2]+[stack[-2]//stack[-1]]
+                else:
+                    stack=stack[:-2]+[0]
+            else:
+                stack.append(int(t))
+        return stack[0]
