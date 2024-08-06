@@ -1,0 +1,20 @@
+class Solution:
+    def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
+        l=[]
+        d=defaultdict(int)
+        for i in range(len(nums2)):
+            if not l:
+                l.append(nums2[i])
+                continue
+            if l[len(l)-1]<nums2[i]:
+                while l and l[len(l)-1]<nums2[i]:
+                    d[l[len(l)-1]]=nums2[i]
+                    l=l[:-1]
+            l.append(nums2[i])
+        ans=[]
+        for t in nums1:
+            if d[t]:
+                ans.append(d[t])
+            else:
+                ans.append(-1)
+        return ans

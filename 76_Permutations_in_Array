@@ -1,0 +1,22 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+public:
+    bool isPossible(int k, vector<int>& arr1, vector<int>& arr2) {
+        sort(arr1.begin(), arr1.end());
+        sort(arr2.begin(), arr2.end());
+
+        for (int t : arr1) {
+            auto it = lower_bound(arr2.begin(), arr2.end(), k - t);
+            if (it == arr2.end()) {
+                return false;
+            }
+            arr2.erase(it);
+        }
+        return true;
+    }
+};

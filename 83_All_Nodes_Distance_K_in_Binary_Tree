@@ -1,0 +1,36 @@
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.left = None
+#         self.right = None
+
+class Solution:
+    def distanceK(self, root: TreeNode, target: TreeNode, k: int) -> List[int]:
+        graph=defaultdict(list)
+        s=[root]
+        while s:
+            n=[]
+            for root in s:
+                if root.left:
+                    graph[root.val].append(root.left.val)
+                    graph[root.left.val].append(root.val)
+                    n.append(root.left)
+                if root.right:
+                    graph[root.val].append(root.right.val)
+                    graph[root.right.val].append(root.val)
+                    n.append(root.right)
+            s=n
+        # print(graph)
+        v=[]
+        s=[target.val]
+        for i in range(k):
+            # print(s)
+            n=[]
+            for node in s:
+                v.append(node)
+                for t in graph[node]:
+                    if t not in v:
+                        n.append(t)
+            s=n
+        return s

@@ -1,0 +1,15 @@
+import bisect
+class Solution:
+    #User function Template for python3
+    
+    #Complete this function
+    def findFloor(self,A,N,X):
+        #Your code here
+        if X<A[0]:
+            return -1
+        if X>A[-1]:
+            return N-1
+        t=bisect.bisect_left(A,X)
+        if A[t]==X:
+            return t
+        return t-1
